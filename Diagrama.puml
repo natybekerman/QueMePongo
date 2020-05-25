@@ -1,0 +1,109 @@
+@startuml
+
+enum Categroia{
+    +PARTE_SUPERIOR
+    +CALZADO
+    +PARTE_INFERIOR
+    +ACCESORIOS
+}
+
+class Color {
+    -rojo : Integer
+    -verde : Integer
+    -azul : Integer
+}
+
+enum Material {
+    +CUERO
+    +LANA
+    +ALGODON
+    +TELA
+}
+
+class Prenda {
+    -tipoPrenda TipoPrenda
+    -colorPrimario : Color
+    -colorSecundario : Color
+    -material : Material
+    -trama : Trama
+
+    +getCategoria() : Categoria
+}
+
+class PrendaBorrador {
+    -tipoPrenda : TipoPrenda
+    -colorPrimario : Color
+    -colorSecundario : Color
+    -material : Material
+    -trama : Trama
+
+    +agregarColorPrimario(Color colorPrimario) : void
+    +agregarColorSecundario(Color colorSecundario) : void
+    +agregarMaterial(Material material) : void
+    +agregarTrama(Trama trama) : void
+    +crearPrenda() : Prenda
+}
+
+interface Sastre {
+    +fabricarParteSuperior() : Prenda
+    +fabricarParteInferior() : Prenda
+    +fabricarCalzado() : Prenda
+}
+
+class SastreJohnston {
+  +fabricarParteSuperior() : Prenda
+  +fabricarCalzado() : Prenda
+  +fabricarParteInferior() : Prenda
+}
+
+class SastreSanJuan {
+  +fabricarParteSuperior() : Prenda
+  +fabricarCalzado() : Prenda
+  +fabricarParteInferior() : Prenda
+}
+
+class TipoDePrenda {
+   -categoria : Categoria
+   -nombre : String
+
+    +getCategoria() : Categoria
+}
+
+enum Trama {
+    +LISA
+    +RAYADA
+    +CON_LUNARES
+    +A_CUADROS
+    +ESTAMPADO
+}
+
+class Uniforme {
+    -prendaParteSuperior : Prenda
+    -prendaParteInferior : Prenda
+    -calzado : Prenda
+
+    +fabricar(Sastre sastre) : Uniforme
+}
+
+Prenda "*" --> "1" TipoPrenda
+Prenda "*" --> "1" Color
+Prenda "*" --> "1" Color
+Prenda "*" --> "1" Material
+Prenda "*" --> "1" Trama
+PrendaBorrador "*" --> "1" TipoPrenda
+PrendaBorrador "*" --> "1" Color
+PrendaBorrador "*" --> "1" Color
+PrendaBorrador "*" --> "1" Material
+PrendaBorrador "*" --> "1" Trama
+PrendaBorrador ..> Prenda
+Sastre -[hidden]--> SastreSanJuan
+Sastre -[hidden]--> SastreJohnston
+SastreSanJuan ..|> Sastre
+SastreSastreJohnston ..|> Sastre
+TipoDePrenda "*" --> "1" Categoria
+Uniforme "*" -> "1" Prenda
+Uniforme "*" -> "1" Prenda
+Uniforme "*" -> "1" Prenda
+Uniforme ..> Sastre
+
+@enduml
