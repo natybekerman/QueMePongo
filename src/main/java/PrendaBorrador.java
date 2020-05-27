@@ -6,6 +6,7 @@ public class PrendaBorrador {
     private Color colorSecundario;
     private Material material;
     private Trama trama;
+    private EstadoClima estadoClima;
 
     public PrendaBorrador(TipoPrenda tipoPrenda){
         if(tipoPrenda == null) { throw new PrendaException("Error, el campo tipo de la prenda esta vacio"); }
@@ -38,8 +39,14 @@ public class PrendaBorrador {
         }
     }
 
+    public void agregarEstadoClima(EstadoClima estadoClima){
+        if (estadoClima == null) throw new PrendaException("Error, el campo estado del clima esta vacio");
+        this.estadoClima = estadoClima;
+    }
+
     public Prenda crearPrenda(){
-        return new Prenda(tipoPrenda, colorPrimario, colorSecundario, material, trama);
+        return new Prenda(this.tipoPrenda, this.colorPrimario, this.colorSecundario,
+                this.material, this.trama, this.estadoClima);
     }
 
 }
