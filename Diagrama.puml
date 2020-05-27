@@ -26,8 +26,10 @@ class Prenda {
     -colorSecundario : Color
     -material : Material
     -trama : Trama
+    -estadoClima : EstadoClima
 
     +getCategoria() : Categoria
+    +getEstadoClima() : EstadoClima
 }
 
 class PrendaBorrador {
@@ -36,12 +38,14 @@ class PrendaBorrador {
     -colorSecundario : Color
     -material : Material
     -trama : Trama
+    -estadoClima : EstadoClima
 
     +agregarColorPrimario(Color colorPrimario) : void
     +agregarColorSecundario(Color colorSecundario) : void
     +agregarMaterial(Material material) : void
     +agregarTrama(Trama trama) : void
     +crearPrenda() : Prenda
+    +agregarEstadoClima(EstadoClima estadoClima) : void
 }
 
 interface Sastre {
@@ -62,11 +66,12 @@ class SastreSanJuan {
   +fabricarParteInferior() : Prenda
 }
 
-class TipoDePrenda {
+class TipoPrenda {
    -categoria : Categoria
    -nombre : String
 
     +getCategoria() : Categoria
+    +getNombre() : String
 }
 
 enum Trama {
@@ -85,25 +90,71 @@ class Uniforme {
     +fabricar(Sastre sastre) : Uniforme
 }
 
+class Sugerencia {
+    -atuendoSugerido : Set<Prenda>
+    -proveedorClima : ProveedorClima
+    
+    +generarSugerencias(Guardarropa guardarropa) : Set<Prenda>
+    +prendaSugeridaAptaParaLaTemperatura(Set<Prenda> prendas) : Prenda
+    +validadorGuardarropaParaHacerSugerencia(Guardarropa guardarropa) : void
+}
+
+class Guardarropa {
+    -prendasGuardadas : Set<Prendas>
+    
+    +getPrendasGuardadas() : Set<Prenda>
+    +agregarPrenda(Prenda prenda) : void
+    +getPrendasParaLaCategoria(Categoria categoria) : Set<Prenda>
+}
+
+enum EstadoClima{
+    +FRIO
+    +CALOR
+    +CUALQUIERCLIMA
+}
+
+interface ProveedorClima {
+    +getTemperatura() : Double
+}
+
+class AccuWeatherAPI {
+    -ultimaFechaDePedido : LocalDateTime
+    -temperaturaActual : Double
+    
+    +getWeather(String ciudad) : List<Map<String, Object>>
+    +getTemperatura() : Double
+    +devuelveTemperaturaActualEnCelsius(HashMap<String, Object> temperatura) : Double
+    +estaEnFahrenheit(HashMap<String, Object>) : Boolean
+    +convertirDeFahrenheitACelsius(Double valor) : Double
+    +fueHaceMasDe12Horas(LocalDateTime ultimaFechaDePedido) : Boolean
+}
+
 Prenda "*" --> "1" TipoPrenda
 Prenda "*" --> "1" Color
 Prenda "*" --> "1" Color
 Prenda "*" --> "1" Material
 Prenda "*" --> "1" Trama
+Prenda "*" --> "1" EstadoClima
 PrendaBorrador "*" --> "1" TipoPrenda
 PrendaBorrador "*" --> "1" Color
 PrendaBorrador "*" --> "1" Color
 PrendaBorrador "*" --> "1" Material
 PrendaBorrador "*" --> "1" Trama
+PrendaBorrador "*" --> "1" EstadoClima
 PrendaBorrador ..> Prenda
 Sastre -[hidden]--> SastreSanJuan
 Sastre -[hidden]--> SastreJohnston
 SastreSanJuan ..|> Sastre
 SastreSastreJohnston ..|> Sastre
 TipoDePrenda "*" --> "1" Categoria
-Uniforme "*" -> "1" Prenda
-Uniforme "*" -> "1" Prenda
-Uniforme "*" -> "1" Prenda
+Uniforme "*" --> "1" Prenda
+Uniforme "*" --> "1" Prenda
+Uniforme "*" --> "1" Prenda
 Uniforme ..> Sastre
+Sugerencia "*" --> "*" Prenda
+Sugerencia "*" --> "1" ProveedorClima
+Guardarropa "*" --> "*" Prenda 
+AccuWeatherAPI ..|> ProveedorClima
+ProveedorClima -[hidden]--> AccuWeatherAPI
 
 @enduml
