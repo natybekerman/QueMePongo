@@ -1,6 +1,5 @@
 package Service.Clima;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 public final class AccuWeatherAPI {

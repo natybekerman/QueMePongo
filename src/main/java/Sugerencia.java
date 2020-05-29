@@ -1,11 +1,11 @@
 import Exceptions.PrendaException;
-import Service.Clima.ProveedorClima;
+import Service.Clima.ServicioMeteorologico;
 
 import java.util.Set;
 
 public class Sugerencia {
     private Set<Prenda> atuendoSugerido;
-    private ProveedorClima proveedorClima;
+    private ServicioMeteorologico servicioMeteorologico;
 
     public Set<Prenda> generarSugerencia(Guardarropa guardarropa){
         validadorGuardarropaParaHacerSugerencia(guardarropa);
@@ -23,10 +23,10 @@ public class Sugerencia {
         return this.atuendoSugerido;
     }
     Prenda prendaSugerenciaAptaParaLaTemperaturaActual(Set<Prenda> prendas){
-        if (proveedorClima.getTemperatura() < 20 ) {
+        if (servicioMeteorologico.getTemperatura() < 20 ) {
             prendas.stream().filter(prenda -> prenda.getEstadoClima().equals(EstadoClima.FRIO)
                     || prenda.getEstadoClima().equals(EstadoClima.CUALQUIERCLIMA));
-        }else if (proveedorClima.getTemperatura() >= 20){
+        }else if (servicioMeteorologico.getTemperatura() >= 20){
             prendas.stream().filter(prenda -> prenda.getEstadoClima().equals(EstadoClima.CALOR)
                     || prenda.getEstadoClima().equals(EstadoClima.CUALQUIERCLIMA));
         }

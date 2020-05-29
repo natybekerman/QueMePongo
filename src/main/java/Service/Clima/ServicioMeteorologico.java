@@ -1,5 +1,5 @@
 package Service.Clima;
 
-public interface ProveedorClima {
+public interface ServicioMeteorologico {
     Double getTemperatura();
 }
