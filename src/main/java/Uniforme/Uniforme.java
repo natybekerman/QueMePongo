@@ -1,3 +1,7 @@
+package Uniforme;
+
+import Prenda.Prenda;
+
 public class Uniforme {
     private Prenda prendaParteSuperior;
     private Prenda prendaParteInferior;

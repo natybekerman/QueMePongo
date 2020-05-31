@@ -1,3 +1,5 @@
+package Prenda;
+
 public class Prenda {
         private TipoPrenda tipoPrenda;
         private Color colorPrimario;

@@ -1,3 +1,5 @@
+package Prenda;
+
 import Exceptions.PrendaException;
 
 public class PrendaBorrador {

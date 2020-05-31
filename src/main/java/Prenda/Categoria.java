@@ -1,3 +1,5 @@
+package Prenda;
+
 public enum Categoria {
     PARTE_SUPERIOR,
     CALZADO,

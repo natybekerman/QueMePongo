@@ -1,3 +1,7 @@
+package Uniforme;
+
+import Prenda.*;
+
 public class SastreSanJuan implements Sastre{
 
     public Prenda fabricarParteSuperior() {

@@ -1,3 +1,7 @@
+package Uniforme;
+
+import Prenda.*;
+
 public class SastreJohnston implements Sastre{
 
     public Prenda fabricarParteSuperior() {
@@ -15,7 +19,7 @@ public class SastreJohnston implements Sastre{
     }
 
     public Prenda fabricarParteInferior() {
-        PrendaBorrador prendaBorrador = new PrendaBorrador(new TipoPrenda("Pantalon",Categoria.PARTE_INFERIOR));
+        PrendaBorrador prendaBorrador = new PrendaBorrador(new TipoPrenda("Pantalon", Categoria.PARTE_INFERIOR));
         prendaBorrador.agregarColorPrimario(new Color(1, 1, 1));
         prendaBorrador.agregarMaterial(Material.ALGODON);
         return prendaBorrador.crearPrenda();

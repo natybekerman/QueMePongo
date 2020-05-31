@@ -1,3 +1,5 @@
+package Prenda;
+
 import java.util.Arrays;
 
 public class TipoPrenda {

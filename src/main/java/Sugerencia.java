@@ -1,4 +1,5 @@
 import Exceptions.PrendaException;
+import Prenda.*;
 import Service.Clima.ServicioMeteorologico;
 
 import java.util.Set;

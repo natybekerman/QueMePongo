@@ -7,74 +7,74 @@ enum Categroia{
     +ACCESORIOS
 }
 
-class Color {
+class Prenda.Color {
     -rojo : Integer
     -verde : Integer
     -azul : Integer
 }
 
-enum Material {
+enum Prenda.Material {
     +CUERO
     +LANA
     +ALGODON
     +TELA
 }
 
-class Prenda {
-    -tipoPrenda TipoPrenda
-    -colorPrimario : Color
-    -colorSecundario : Color
-    -material : Material
-    -trama : Trama
-    -estadoClima : EstadoClima
+class Prenda.Prenda {
+    -tipoPrenda Prenda.TipoPrenda
+    -colorPrimario : Prenda.Color
+    -colorSecundario : Prenda.Color
+    -material : Prenda.Material
+    -trama : Prenda.Trama
+    -estadoClima : Prenda.EstadoClima
 
-    +getCategoria() : Categoria
-    +getEstadoClima() : EstadoClima
+    +getCategoria() : Prenda.Categoria
+    +getEstadoClima() : Prenda.EstadoClima
 }
 
-class PrendaBorrador {
-    -tipoPrenda : TipoPrenda
-    -colorPrimario : Color
-    -colorSecundario : Color
-    -material : Material
-    -trama : Trama
-    -estadoClima : EstadoClima
+class Prenda.PrendaBorrador {
+    -tipoPrenda : Prenda.TipoPrenda
+    -colorPrimario : Prenda.Color
+    -colorSecundario : Prenda.Color
+    -material : Prenda.Material
+    -trama : Prenda.Trama
+    -estadoClima : Prenda.EstadoClima
 
-    +agregarColorPrimario(Color colorPrimario) : void
-    +agregarColorSecundario(Color colorSecundario) : void
-    +agregarMaterial(Material material) : void
-    +agregarTrama(Trama trama) : void
-    +crearPrenda() : Prenda
-    +agregarEstadoClima(EstadoClima estadoClima) : void
+    +agregarColorPrimario(Prenda.Color colorPrimario) : void
+    +agregarColorSecundario(Prenda.Color colorSecundario) : void
+    +agregarMaterial(Prenda.Material material) : void
+    +agregarTrama(Prenda.Trama trama) : void
+    +crearPrenda() : Prenda.Prenda
+    +agregarEstadoClima(Prenda.EstadoClima estadoClima) : void
 }
 
-interface Sastre {
-    +fabricarParteSuperior() : Prenda
-    +fabricarParteInferior() : Prenda
-    +fabricarCalzado() : Prenda
+interface Uniforme.Uniforme.Sastre {
+    +fabricarParteSuperior() : Prenda.Prenda
+    +fabricarParteInferior() : Prenda.Prenda
+    +fabricarCalzado() : Prenda.Prenda
 }
 
-class SastreJohnston {
-  +fabricarParteSuperior() : Prenda
-  +fabricarCalzado() : Prenda
-  +fabricarParteInferior() : Prenda
+class Uniforme.Uniforme.SastreJohnston {
+  +fabricarParteSuperior() : Prenda.Prenda
+  +fabricarCalzado() : Prenda.Prenda
+  +fabricarParteInferior() : Prenda.Prenda
 }
 
-class SastreSanJuan {
-  +fabricarParteSuperior() : Prenda
-  +fabricarCalzado() : Prenda
-  +fabricarParteInferior() : Prenda
+class Uniforme.Uniforme.SastreSanJuan {
+  +fabricarParteSuperior() : Prenda.Prenda
+  +fabricarCalzado() : Prenda.Prenda
+  +fabricarParteInferior() : Prenda.Prenda
 }
 
-class TipoPrenda {
-   -categoria : Categoria
+class Prenda.TipoPrenda {
+   -categoria : Prenda.Categoria
    -nombre : String
 
-    +getCategoria() : Categoria
+    +getCategoria() : Prenda.Categoria
     +getNombre() : String
 }
 
-enum Trama {
+enum Prenda.Trama {
     +LISA
     +RAYADA
     +CON_LUNARES
@@ -82,32 +82,32 @@ enum Trama {
     +ESTAMPADO
 }
 
-class Uniforme {
-    -prendaParteSuperior : Prenda
-    -prendaParteInferior : Prenda
-    -calzado : Prenda
+class Uniforme.Uniforme {
+    -prendaParteSuperior : Prenda.Prenda
+    -prendaParteInferior : Prenda.Prenda
+    -calzado : Prenda.Prenda
 
-    +fabricar(Sastre sastre) : Uniforme
+    +fabricar(Uniforme.Uniforme.Sastre sastre) : Uniforme.Uniforme
 }
 
 class Sugerencia {
-    -atuendoSugerido : Set<Prenda>
+    -atuendoSugerido : Set<Prenda.Prenda>
     -proveedorClima : ProveedorClima
     
-    +generarSugerencias(Guardarropa guardarropa) : Set<Prenda>
-    +prendaSugeridaAptaParaLaTemperatura(Set<Prenda> prendas) : Prenda
+    +generarSugerencias(Guardarropa guardarropa) : Set<Prenda.Prenda>
+    +prendaSugeridaAptaParaLaTemperatura(Set<Prenda.Prenda> prendas) : Prenda.Prenda
     +validadorGuardarropaParaHacerSugerencia(Guardarropa guardarropa) : void
 }
 
 class Guardarropa {
     -prendasGuardadas : Set<Prendas>
     
-    +getPrendasGuardadas() : Set<Prenda>
-    +agregarPrenda(Prenda prenda) : void
-    +getPrendasParaLaCategoria(Categoria categoria) : Set<Prenda>
+    +getPrendasGuardadas() : Set<Prenda.Prenda>
+    +agregarPrenda(Prenda.Prenda prenda) : void
+    +getPrendasParaLaCategoria(Prenda.Categoria categoria) : Set<Prenda.Prenda>
 }
 
-enum EstadoClima{
+enum Prenda.EstadoClima{
     +FRIO
     +CALOR
     +CUALQUIERCLIMA
@@ -129,31 +129,31 @@ class AccuWeatherAPI {
     +fueHaceMasDe12Horas(LocalDateTime ultimaFechaDePedido) : Boolean
 }
 
-Prenda "*" --> "1" TipoPrenda
-Prenda "*" --> "1" Color
-Prenda "*" --> "1" Color
-Prenda "*" --> "1" Material
-Prenda "*" --> "1" Trama
-Prenda "*" --> "1" EstadoClima
-PrendaBorrador "*" --> "1" TipoPrenda
-PrendaBorrador "*" --> "1" Color
-PrendaBorrador "*" --> "1" Color
-PrendaBorrador "*" --> "1" Material
-PrendaBorrador "*" --> "1" Trama
-PrendaBorrador "*" --> "1" EstadoClima
-PrendaBorrador ..> Prenda
-Sastre -[hidden]--> SastreSanJuan
-Sastre -[hidden]--> SastreJohnston
-SastreSanJuan ..|> Sastre
-SastreSastreJohnston ..|> Sastre
-TipoDePrenda "*" --> "1" Categoria
-Uniforme "*" --> "1" Prenda
-Uniforme "*" --> "1" Prenda
-Uniforme "*" --> "1" Prenda
-Uniforme ..> Sastre
-Sugerencia "*" --> "*" Prenda
+Prenda.Prenda "*" --> "1" Prenda.TipoPrenda
+Prenda.Prenda "*" --> "1" Prenda.Color
+Prenda.Prenda "*" --> "1" Prenda.Color
+Prenda.Prenda "*" --> "1" Prenda.Material
+Prenda.Prenda "*" --> "1" Prenda.Trama
+Prenda.Prenda "*" --> "1" Prenda.EstadoClima
+Prenda.PrendaBorrador "*" --> "1" Prenda.TipoPrenda
+Prenda.PrendaBorrador "*" --> "1" Prenda.Color
+Prenda.PrendaBorrador "*" --> "1" Prenda.Color
+Prenda.PrendaBorrador "*" --> "1" Prenda.Material
+Prenda.PrendaBorrador "*" --> "1" Prenda.Trama
+Prenda.PrendaBorrador "*" --> "1" Prenda.EstadoClima
+Prenda.PrendaBorrador ..> Prenda.Prenda
+Uniforme.Uniforme.Sastre -[hidden]--> Uniforme.Uniforme.SastreSanJuan
+Uniforme.Uniforme.Sastre -[hidden]--> Uniforme.Uniforme.SastreJohnston
+Uniforme.Uniforme.SastreSanJuan ..|> Uniforme.Uniforme.Sastre
+SastreSastreJohnston ..|> Uniforme.Uniforme.Sastre
+TipoDePrenda "*" --> "1" Prenda.Categoria
+Uniforme.Uniforme "*" --> "1" Prenda.Prenda
+Uniforme.Uniforme "*" --> "1" Prenda.Prenda
+Uniforme.Uniforme "*" --> "1" Prenda.Prenda
+Uniforme.Uniforme ..> Uniforme.Uniforme.Sastre
+Sugerencia "*" --> "*" Prenda.Prenda
 Sugerencia "*" --> "1" ProveedorClima
-Guardarropa "*" --> "*" Prenda 
+Guardarropa "*" --> "*" Prenda.Prenda
 AccuWeatherAPI ..|> ProveedorClima
 ProveedorClima -[hidden]--> AccuWeatherAPI
 

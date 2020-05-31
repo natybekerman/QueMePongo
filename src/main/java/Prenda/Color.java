@@ -1,3 +1,5 @@
+package Prenda;
+
 public class Color {
     Integer rojo;
     Integer verde;
