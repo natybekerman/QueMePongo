@@ -1,5 +1,5 @@
 import Exceptions.GuardarropasException;
-import Prenda.Prenda;
+import Guardarropa.Guardarropa;
 import Propuesta.Propuesta;
 
 import java.util.Set;

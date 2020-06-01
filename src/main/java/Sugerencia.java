@@ -1,4 +1,5 @@
 import Exceptions.PrendaException;
+import Guardarropa.Guardarropa;
 import Prenda.*;
 import Service.Clima.ServicioMeteorologico;
 

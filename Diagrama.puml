@@ -94,12 +94,12 @@ class Sugerencia {
     -atuendoSugerido : Set<Prenda.Prenda>
     -proveedorClima : ProveedorClima
     
-    +generarSugerencias(Guardarropa guardarropa) : Set<Prenda.Prenda>
+    +generarSugerencias(Guardarropa.Guardarropa guardarropa) : Set<Prenda.Prenda>
     +prendaSugeridaAptaParaLaTemperatura(Set<Prenda.Prenda> prendas) : Prenda.Prenda
-    +validadorGuardarropaParaHacerSugerencia(Guardarropa guardarropa) : void
+    +validadorGuardarropaParaHacerSugerencia(Guardarropa.Guardarropa guardarropa) : void
 }
 
-class Guardarropa {
+class Guardarropa.Guardarropa {
     -prendasGuardadas : Set<Prendas>
     
     +getPrendasGuardadas() : Set<Prenda.Prenda>
@@ -153,7 +153,7 @@ Uniforme.Uniforme "*" --> "1" Prenda.Prenda
 Uniforme.Uniforme ..> Uniforme.Uniforme.Sastre
 Sugerencia "*" --> "*" Prenda.Prenda
 Sugerencia "*" --> "1" ProveedorClima
-Guardarropa "*" --> "*" Prenda.Prenda
+Guardarropa.Guardarropa "*" --> "*" Prenda.Prenda
 AccuWeatherAPI ..|> ProveedorClima
 ProveedorClima -[hidden]--> AccuWeatherAPI
 

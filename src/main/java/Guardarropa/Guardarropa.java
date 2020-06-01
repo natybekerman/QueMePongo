@@ -1,3 +1,5 @@
+package Guardarropa;
+
 import Exceptions.PrendaException;
 import Prenda.Prenda;
 import Propuesta.*;
@@ -37,41 +39,15 @@ public class Guardarropa {
         this.propuestas.add(propuesta);
     }
     public void aceptarPropuesta(Propuesta propuesta){
-        propuesta.setEstadoDeLaPropuesta(EstadoDeLaPropuesta.ACEPTADA);
-        if(propuesta.getEsAAgregar()){
-            agregarPrenda(propuesta.getPrenda());
-        } else {
-            quitarPrenda(propuesta.getPrenda());
-        }
+        propuesta.aceptar(this);
     }
     public void rechazarPropuesta(Propuesta propuesta){
-        propuesta.setEstadoDeLaPropuesta(EstadoDeLaPropuesta.RECHAZADA);
-        if(propuesta.getEsAAgregar()){
-            quitarPrenda(propuesta.getPrenda());
-        } else {
-            agregarPrenda(propuesta.getPrenda());
-        }
-    }
-    public void deshacerPropuesta(Propuesta propuesta){
-        if(propuesta.getEstadoDeLaPropuesta() == EstadoDeLaPropuesta.ACEPTADA){
-            if (propuesta.getEsAAgregar()) {
-                quitarPrenda(propuesta.getPrenda());
-            } else {
-                agregarPrenda(propuesta.getPrenda());
-            }
-        }else{
-            if (propuesta.getEsAAgregar()) {
-                agregarPrenda(propuesta.getPrenda());
-            } else {
-                quitarPrenda(propuesta.getPrenda());
-            }
-        }
-        propuesta.setEstadoDeLaPropuesta(EstadoDeLaPropuesta.NO_EVALUADA);
+        propuesta.rechazar(this);
     }
     public void deshacerTodasLasPropuestas(){
         this.propuestas.stream()
                 .filter(propuesta -> propuesta.getEstadoDeLaPropuesta() != EstadoDeLaPropuesta.NO_EVALUADA)
-                .forEach(propuesta -> deshacerPropuesta(propuesta));
+                .forEach(propuesta -> propuesta.deshacer(this));
     }
     public void validadorQueLaPrendaNoTengaPropuestaGuardada(Propuesta propuesta){
         if(this.propuestas.stream().anyMatch(propuesta1 -> propuesta1.getPrenda() == propuesta.getPrenda())){
